@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
                 alertDiv.classList.remove('show');
-                setTimeout(() => alertDiv.remove(), 250);
+                setTimeout(() => alertDiv.remove(), 5000);
             });
         }
 
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             if (alertDiv.parentNode) {
                 alertDiv.classList.remove('show');
-                setTimeout(() => alertDiv.remove(), 250);
+                setTimeout(() => alertDiv.remove(), 5000);
             }
         }, 4000);
     }
