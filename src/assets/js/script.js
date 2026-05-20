@@ -30,12 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Operadores
     const btnAdd = document.getElementById('btn-add');
     const btnSubtract = document.getElementById('btn-subtract');
-    const btnPercent = document.getElementById('btn-percent');
+    const btnDivide = document.getElementById('btn-divide');
     const btnMultiply = document.getElementById('btn-multiply');
 
     if (btnAdd) btnAdd.addEventListener('click', () => appendOperator('+'));
     if (btnSubtract) btnSubtract.addEventListener('click', () => appendOperator('-'));
-    if (btnPercent) btnPercent.addEventListener('click', () => appendOperator('%'));
+    if (btnDivide) btnDivide.addEventListener('click', () => appendOperator('/'));
     if (btnMultiply) btnMultiply.addEventListener('click', () => appendOperator('x'));
 
     // Acciones especiales
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Si el último carácter es un operador, reemplazarlo
         const lastChar = expression.trim().slice(-1);
-        if (['+', '-', '%', 'x'].includes(lastChar)) {
+        if (['+', '-', '/', 'x'].includes(lastChar)) {
             expression = expression.trim().slice(0, -1) + ' ' + op + ' ';
         } else {
             expression += ' ' + op + ' ';
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Comprobar si termina en un operador y limpiarlo
         let evalExpr = expression.trim();
         const lastChar = evalExpr.slice(-1);
-        if (['+', '-', '%', 'x'].includes(lastChar)) {
+        if (['+', '-', '/', 'x'].includes(lastChar)) {
             evalExpr = evalExpr.slice(0, -1).trim();
         }
 
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         expression = expression.trim();
         if (expression.length > 0) {
             // Si el último es un espacio (operador), removemos el operador y sus espacios
-            if (expression.endsWith('+') || expression.endsWith('-') || expression.endsWith('%') || expression.endsWith('x')) {
+            if (expression.endsWith('+') || expression.endsWith('-') || expression.endsWith('/') || expression.endsWith('x')) {
                 expression = expression.slice(0, -1).trim();
             } else {
                 expression = expression.slice(0, -1);
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Reconstruir currentValue
             const parts = expression.split(/\s+/);
             currentValue = parts[parts.length - 1];
-            if (['+', '-', '%', 'x'].includes(currentValue)) {
+            if (['+', '-', '/', 'x'].includes(currentValue)) {
                 currentValue = '';
             }
 
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Si no, mostramos el último número en la expresión completa
             const parts = expression.trim().split(/\s+/);
             const lastPart = parts[parts.length - 1];
-            if (lastPart && !['+', '-', '%', 'x'].includes(lastPart)) {
+            if (lastPart && !['+', '-', '/', 'x'].includes(lastPart)) {
                 displayCurrent.textContent = lastPart;
             } else {
                 displayCurrent.textContent = '0';
@@ -284,14 +284,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const hasAdd = expr.includes('+');
         const hasSub = expr.includes('-');
         const hasMul = expr.includes('x') || expr.includes('*');
-        const hasMod = expr.includes('%');
+        const hasDiv = expr.includes('/');
 
         let alertClass = 'alert-secondary';
         let title = 'Operación Aritmética';
         let text = 'Se ha realizado un cálculo en la calculadora.';
 
         // Contar tipos de operadores
-        const activeOperators = [hasAdd, hasSub, hasMul, hasMod].filter(Boolean).length;
+        const activeOperators = [hasAdd, hasSub, hasMul, hasDiv].filter(Boolean).length;
 
         if (activeOperators > 1) {
             alertClass = 'alert-secondary';
@@ -309,10 +309,10 @@ document.addEventListener('DOMContentLoaded', () => {
             alertClass = 'alert-warning';
             title = 'Multiplicación (Producto)';
             text = 'Representa sumar un valor repetidamente según indique el otro.';
-        } else if (hasMod) {
+        } else if (hasDiv) {
             alertClass = 'alert-primary';
-            title = 'Módulo o Residuo';
-            text = 'Obtiene el residuo o sobrante de una división entera entre las cifras.';
+            title = 'División';
+            text = 'La división reparte una cantidad total en partes o grupos iguales.';
         }
 
         // Crear el contenedor de la alerta
@@ -339,17 +339,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
                 alertDiv.classList.remove('show');
-                setTimeout(() => alertDiv.remove(), 5000);
+                // IMPORTANTE: Aquí restauramos a 250ms para que se remueva del DOM
+                // en cuanto termine la animación de desvanecimiento (fade).
+                setTimeout(() => alertDiv.remove(), 250);
             });
         }
 
         container.appendChild(alertDiv);
 
-        // Auto-remover a los 4 segundos
+        // Auto-remover a los 4 segundos (4000ms). Puedes modificar el 4000 de abajo para cambiar la duración.
         setTimeout(() => {
             if (alertDiv.parentNode) {
                 alertDiv.classList.remove('show');
-                setTimeout(() => alertDiv.remove(), 5000);
+                // IMPORTANTE: Aquí restauramos a 250ms para remover tras el desvanecimiento.
+                setTimeout(() => alertDiv.remove(), 250);
             }
         }, 4000);
     }
@@ -359,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '1': 'btn-1', '2': 'btn-2', '3': 'btn-3',
         '4': 'btn-4', '5': 'btn-5', '6': 'btn-6',
         '7': 'btn-7', '8': 'btn-8', '9': 'btn-9',
-        '+': 'btn-add', '-': 'btn-subtract', '%': 'btn-percent',
+        '+': 'btn-add', '-': 'btn-subtract', '/': 'btn-divide',
         'x': 'btn-multiply', '*': 'btn-multiply',
         'Enter': 'btn-calc', '=': 'btn-calc',
         'Escape': 'btn-clear', 'c': 'btn-clear', 'C': 'btn-clear',
