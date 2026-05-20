@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calculadora interactiva premium con historial de registros y diseño responsivo. Interfaz limpia construida con HTML5 y CSS3.">
+    <title>Calculadora de Jesús Pérez</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- ESTE ES EL CONTENEDOR PRINCIPAL DONDE SE MUESTRA LA CALCULADORA-->
+    <main class="calculator-container" aria-label="Calculadora">
+
+        <!-- AQUI TENEMOS EL PANEL IZQUIERDO:  EL HISTORIAL (40%) -->
+        <aside class="history-panel">
+            <h2 class="history-title" id="history-header">Últimos 10 registros</h2>
+            <div class="history-list" aria-labelledby="history-header" role="list">
+
+                <!--AQUI HAY UNNOS EJEMPLOS DE LOS REGISTROS SIMULADOS QUE PIDE EL PROFE -->
+                <div class="history-item" role="listitem" tabindex="0">
+                    <span class="history-expr">9 &times; 9 =</span>
+                    <span class="history-result">81</span>
+                </div>
+                <div class="history-item" role="listitem" tabindex="0">
+                    <span class="history-expr">450 &minus; 50 =</span>
+                    <span class="history-result">400</span>
+                </div>
+                <div class="history-item" role="listitem" tabindex="0">
+                    <span class="history-expr">125 % 10 =</span>
+                    <span class="history-result">12.5</span>
+                </div>
+                <div class="history-item" role="listitem" tabindex="0">
+                    <span class="history-expr">8 + 8 =</span>
+                    <span class="history-result">16</span>
+                </div>
+                <div class="history-item" role="listitem" tabindex="0">
+                    <span class="history-expr">72 &times; 2 =</span>
+                    <span class="history-result">144</span>
+                </div>
+                <div class="history-item" role="listitem" tabindex="0">
+                    <span class="history-expr">1000 &minus; 250 =</span>
+                    <span class="history-result">750</span>
+                </div>
+                <div class="history-item" role="listitem" tabindex="0">
+                    <span class="history-expr">50 % 5 =</span>
+                    <span class="history-result">0</span>
+                </div>
+                <div class="history-item" role="listitem" tabindex="0">
+                    <span class="history-expr">12 + 13 =</span>
+                    <span class="history-result">25</span>
+                </div>
+                <div class="history-item" role="listitem" tabindex="0">
+                    <span class="history-expr">99 &times; 3 =</span>
+                    <span class="history-result">297</span>
+                </div>
+                <div class="history-item" role="listitem" tabindex="0">
+                    <span class="history-expr">81 &divide; 9 =</span>
+                    <span class="history-result">9</span>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- AQUI HAY UN SECTION CLASS CON EL MENU DE LA CALCULADORA DONDE SE VEN CALCULOS -->
+        <section class="calculator-main" aria-label="Tablero de Operaciones">
+
+            <!-- AQUI SE MUESTRA LA PANTALLA DONDE SE VEN LOS CALCULOS -->
+            <div class="display-wrapper" aria-live="polite">
+                <h1 class="display-title">proceso de calculadora</h1>
+                <div class="display-process" id="calc-expression">125 + 45</div>
+                <div class="display-current" id="calc-current-val">170</div>
+            </div>
+
+            <!-- ESTO SON LOS BOTONES EN UN  DIV CLASS CON SU KEYBOARD GRID, Y TU TIPO DE TECLADO -->
+            <div class="keyboard-grid" role="grid" aria-label="Teclado numérico y operacional">
+
+                <!-- Fila 1 -->
+                <button class="btn btn-operator" id="btn-add" aria-label="Sumar" title="Sumar">+</button>
+                <button class="btn btn-calculate" id="btn-calc" aria-label="Calcular resultado"
+                    title="Calcular">calcular</button>
+                <button class="btn btn-reset" id="btn-clear" aria-label="Reiniciar calculadora"
+                    title="Reiniciar">reiniciar</button>
+                <button class="btn btn-delete" id="btn-backspace" aria-label="Borrar último valor"
+                    title="Borrar último">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-3 12.59L17.59 17 14 13.41 10.41 17 9 15.59 12.59 12 9 8.41 10.41 7 14 10.59 17.59 7 19 8.41 15.41 12 19 15.59z" />
+                    </svg>
+                    <span>borrar<br>último</span>
+                </button>
+
+                <!-- Fila 2 -->
+                <button class="btn btn-operator" id="btn-subtract" aria-label="Restar" title="Restar">-</button>
+                <button class="btn btn-number" id="btn-1" aria-label="1">1</button>
+                <button class="btn btn-number" id="btn-4" aria-label="4">4</button>
+                <button class="btn btn-number" id="btn-7" aria-label="7">7</button>
+
+                <!-- Fila 3 -->
+                <button class="btn btn-operator" id="btn-percent" aria-label="Porcentaje" title="Porcentaje">%</button>
+                <button class="btn btn-number" id="btn-2" aria-label="2">2</button>
+                <button class="btn btn-number" id="btn-5" aria-label="5">5</button>
+                <button class="btn btn-number" id="btn-8" aria-label="8">8</button>
+
+                <!-- Fila 4 -->
+                <button class="btn btn-operator" id="btn-multiply" aria-label="Multiplicar"
+                    title="Multiplicar">x</button>
+                <button class="btn btn-number" id="btn-3" aria-label="3">3</button>
+                <button class="btn btn-number" id="btn-6" aria-label="6">6</button>
+                <button class="btn btn-number" id="btn-9" aria-label="9">9</button>
+
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>
