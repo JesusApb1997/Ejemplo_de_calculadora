@@ -122,6 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Añadir cálculo al historial propio
             addToHistory(evalExpr, result);
 
+            // Mostrar la alerta flotante de tipo de operación con Bootstrap
+            showOperationAlert(evalExpr);
+
             // Actualizar variables
             displayExpression.textContent = evalExpr + ' =';
             displayCurrent.textContent = result;
@@ -270,6 +273,85 @@ document.addEventListener('DOMContentLoaded', () => {
         currentValue = value;
         isCalculated = false;
         updateScreen();
+    }
+
+    // --- ALERTAS DE OPERACIONES CON BOOTSTRAP ---
+    function showOperationAlert(expr) {
+        const container = document.getElementById('alert-container');
+        if (!container) return;
+
+        // Detectar los operadores activos en la expresión
+        const hasAdd = expr.includes('+');
+        const hasSub = expr.includes('-');
+        const hasMul = expr.includes('x') || expr.includes('*');
+        const hasMod = expr.includes('%');
+
+        let alertClass = 'alert-secondary';
+        let title = 'Operación Aritmética';
+        let text = 'Se ha realizado un cálculo en la calculadora.';
+
+        // Contar tipos de operadores
+        const activeOperators = [hasAdd, hasSub, hasMul, hasMod].filter(Boolean).length;
+
+        if (activeOperators > 1) {
+            alertClass = 'alert-secondary';
+            title = 'Operación Combinada';
+            text = 'Has realizado un cálculo que involucra múltiples tipos de operaciones matemáticas básicas.';
+        } else if (hasAdd) {
+            alertClass = 'alert-success';
+            title = 'Suma (Adición)';
+            text = 'La suma reúne dos o más cantidades para obtener un total acumulado.';
+        } else if (hasSub) {
+            alertClass = 'alert-info';
+            title = 'Resta (Sustracción)';
+            text = 'La sustracción determina la diferencia al quitar una cantidad de otra.';
+        } else if (hasMul) {
+            alertClass = 'alert-warning';
+            title = 'Multiplicación (Producto)';
+            text = 'Representa sumar un valor repetidamente según indique el otro.';
+        } else if (hasMod) {
+            alertClass = 'alert-primary';
+            title = 'Módulo o Residuo';
+            text = 'Obtiene el residuo o sobrante de una división entera entre las cifras.';
+        }
+
+        // Crear el contenedor de la alerta
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert ${alertClass} alert-dismissible fade show border-0 shadow mb-2`;
+        alertDiv.setAttribute('role', 'alert');
+        alertDiv.style.borderRadius = '12px';
+        alertDiv.style.minWidth = '280px';
+        alertDiv.style.transition = 'all 0.3s ease';
+
+        alertDiv.innerHTML = `
+            <div class="d-flex flex-column text-start">
+                <strong class="mb-1 d-flex align-items-center" style="font-size: 0.95rem;">
+                    <span class="me-2" style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: currentColor;"></span>
+                    ${title}
+                </strong>
+                <span style="font-size: 0.8rem; line-height: 1.4; color: #333;">${text}</span>
+            </div>
+            <button type="button" class="btn-close" aria-label="Cerrar" style="font-size: 0.65rem; padding: 1.1rem 1rem;"></button>
+        `;
+
+        // Asignar el botón de cierre manualmente para garantizar robustez total sin depender de JS externo de Bootstrap
+        const closeBtn = alertDiv.querySelector('.btn-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                alertDiv.classList.remove('show');
+                setTimeout(() => alertDiv.remove(), 250);
+            });
+        }
+
+        container.appendChild(alertDiv);
+
+        // Auto-remover a los 4 segundos
+        setTimeout(() => {
+            if (alertDiv.parentNode) {
+                alertDiv.classList.remove('show');
+                setTimeout(() => alertDiv.remove(), 250);
+            }
+        }, 4000);
     }
 
     // --- COMPATIBILIDAD CON TECLADO FÍSICO ---
