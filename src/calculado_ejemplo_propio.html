@@ -8,6 +8,7 @@
         content="Calculadora interactiva premium con historial de registros y diseño responsivo. Interfaz limpia construida con HTML5 y CSS3.">
     <title>Calculadora de Jesús Pérez</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js" defer></script>
 </head>
 
 <body>
@@ -19,49 +20,7 @@
         <aside class="history-panel">
             <h2 class="history-title" id="history-header">Últimos 10 registros</h2>
             <div class="history-list" aria-labelledby="history-header" role="list">
-
-                <!--AQUI HAY UNNOS EJEMPLOS DE LOS REGISTROS SIMULADOS QUE PIDE EL PROFE -->
-                <div class="history-item" role="listitem" tabindex="0">
-                    <span class="history-expr">9 &times; 9 =</span>
-                    <span class="history-result">81</span>
-                </div>
-                <div class="history-item" role="listitem" tabindex="0">
-                    <span class="history-expr">450 &minus; 50 =</span>
-                    <span class="history-result">400</span>
-                </div>
-                <div class="history-item" role="listitem" tabindex="0">
-                    <span class="history-expr">125 % 10 =</span>
-                    <span class="history-result">12.5</span>
-                </div>
-                <div class="history-item" role="listitem" tabindex="0">
-                    <span class="history-expr">8 + 8 =</span>
-                    <span class="history-result">16</span>
-                </div>
-                <div class="history-item" role="listitem" tabindex="0">
-                    <span class="history-expr">72 &times; 2 =</span>
-                    <span class="history-result">144</span>
-                </div>
-                <div class="history-item" role="listitem" tabindex="0">
-                    <span class="history-expr">1000 &minus; 250 =</span>
-                    <span class="history-result">750</span>
-                </div>
-                <div class="history-item" role="listitem" tabindex="0">
-                    <span class="history-expr">50 % 5 =</span>
-                    <span class="history-result">0</span>
-                </div>
-                <div class="history-item" role="listitem" tabindex="0">
-                    <span class="history-expr">12 + 13 =</span>
-                    <span class="history-result">25</span>
-                </div>
-                <div class="history-item" role="listitem" tabindex="0">
-                    <span class="history-expr">99 &times; 3 =</span>
-                    <span class="history-result">297</span>
-                </div>
-                <div class="history-item" role="listitem" tabindex="0">
-                    <span class="history-expr">81 &divide; 9 =</span>
-                    <span class="history-result">9</span>
-                </div>
-
+                <!-- Se poblará dinámicamente con JavaScript al calcular -->
             </div>
         </aside>
 
@@ -71,8 +30,8 @@
             <!-- AQUI SE MUESTRA LA PANTALLA DONDE SE VEN LOS CALCULOS -->
             <div class="display-wrapper" aria-live="polite">
                 <h1 class="display-title">proceso de calculadora</h1>
-                <div class="display-process" id="calc-expression">125 + 45</div>
-                <div class="display-current" id="calc-current-val">170</div>
+                <div class="display-process" id="calc-expression"></div>
+                <div class="display-current" id="calc-current-val">0</div>
             </div>
 
             <!-- ESTO SON LOS BOTONES EN UN  DIV CLASS CON SU KEYBOARD GRID, Y TU TIPO DE TECLADO -->
