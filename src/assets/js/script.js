@@ -1,5 +1,5 @@
 /**
- * Lógica funcional de la Calculadora Premium
+ * Lógica funcional Calculadora Jesús Pérez
  */
 document.addEventListener('DOMContentLoaded', () => {
     // --- ELEMENTOS DEL DOM ---
