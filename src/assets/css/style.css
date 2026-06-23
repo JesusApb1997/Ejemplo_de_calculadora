@@ -3,39 +3,62 @@
 /* --- VARIABLES DE DISEÑO --- */
 :root {
   /* Paleta de Colores Sólidos Premium */
-  --bg-app: #0f172a;        /* Fondo general (Slate 900) */
-  --bg-card: #1e293b;       /* Contenedor calculadora (Slate 800) */
-  --bg-history: #0b0f19;    /* Panel de historial (Fondo más oscuro) */
-  --bg-display: #090d16;    /* Pantalla de la calculadora */
-  
+  --bg-app: #0f172a;
+  /* Fondo general (Slate 900) */
+  --bg-card: #1e293b;
+  /* Contenedor calculadora (Slate 800) */
+  --bg-history: #0b0f19;
+  /* Panel de historial (Fondo más oscuro) */
+  --bg-display: #090d16;
+  /* Pantalla de la calculadora */
+
   /* Botones - Colores Sólidos */
-  --btn-num: #334155;       /* Slate 700 (Números) */
-  --btn-num-hover: #475569; /* Slate 600 */
-  --btn-num-active: #1e293b;/* Slate 800 */
-  
-  --btn-op: #f59e0b;        /* Ámbar 500 (Operadores) */
-  --btn-op-hover: #d97706;  /* Ámbar 600 */
-  --btn-op-active: #b45309; /* Ámbar 700 */
-  
-  --btn-calc: #10b981;      /* Esmeralda 500 (Calcular) */
-  --btn-calc-hover: #059669;/* Esmeralda 600 */
-  --btn-calc-active: #047857;/* Esmeralda 700 */
-  
-  --btn-clear: #ef4444;     /* Rojo 500 (Reiniciar) */
-  --btn-clear-hover: #dc2626;/* Rojo 600 */
-  --btn-clear-active: #b91c1c;/* Rojo 700 */
-  
-  --btn-del: #6366f1;       /* Índigo 500 (Borrar) */
-  --btn-del-hover: #4f46e5;  /* Índigo 600 */
-  --btn-del-active: #4338ca; /* Índigo 700 */
+  --btn-num: #334155;
+  /* Slate 700 (Números) */
+  --btn-num-hover: #475569;
+  /* Slate 600 */
+  --btn-num-active: #1e293b;
+  /* Slate 800 */
+
+  --btn-op: #f59e0b;
+  /* Ámbar 500 (Operadores) */
+  --btn-op-hover: #d97706;
+  /* Ámbar 600 */
+  --btn-op-active: #b45309;
+  /* Ámbar 700 */
+
+  --btn-calc: #10b981;
+  /* Esmeralda 500 (Calcular) */
+  --btn-calc-hover: #059669;
+  /* Esmeralda 600 */
+  --btn-calc-active: #047857;
+  /* Esmeralda 700 */
+
+  --btn-clear: #ef4444;
+  /* Rojo 500 (Reiniciar) */
+  --btn-clear-hover: #dc2626;
+  /* Rojo 600 */
+  --btn-clear-active: #b91c1c;
+  /* Rojo 700 */
+
+  --btn-del: #6366f1;
+  /* Índigo 500 (Borrar) */
+  --btn-del-hover: #4f46e5;
+  /* Índigo 600 */
+  --btn-del-active: #4338ca;
+  /* Índigo 700 */
 
   /* Textos */
-  --text-main: #f8fafc;     /* Slate 50 */
-  --text-muted: #94a3b8;    /* Slate 400 */
-  --text-display: #10b981;  /* Esmeralda 500 (Color de resultado principal) */
-  
+  --text-main: #f8fafc;
+  /* Slate 50 */
+  --text-muted: #94a3b8;
+  /* Slate 400 */
+  --text-display: #10b981;
+  /* Esmeralda 500 (Color de resultado principal) */
+
   /* Bordes y Sombras */
-  --border-color: #334155;  /* Slate 700 */
+  --border-color: #334155;
+  /* Slate 700 */
   --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
   --border-radius-outer: 24px;
   --border-radius-inner: 16px;
@@ -228,7 +251,7 @@ body {
 .keyboard-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   gap: 12px;
   flex-grow: 1;
 }
@@ -246,8 +269,8 @@ body {
   align-items: center;
   color: var(--text-main);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 
-              0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2),
+    0 2px 4px -1px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
 }
@@ -276,9 +299,11 @@ body {
 .btn-number {
   background-color: var(--btn-num);
 }
+
 .btn-number:hover {
   background-color: var(--btn-num-hover);
 }
+
 .btn-number:active {
   background-color: var(--btn-num-active);
 }
@@ -288,9 +313,11 @@ body {
   background-color: var(--btn-op);
   font-size: 1.6rem;
 }
+
 .btn-operator:hover {
   background-color: var(--btn-op-hover);
 }
+
 .btn-operator:active {
   background-color: var(--btn-op-active);
 }
@@ -303,9 +330,11 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
 .btn-calculate:hover {
   background-color: var(--btn-calc-hover);
 }
+
 .btn-calculate:active {
   background-color: var(--btn-calc-active);
 }
@@ -318,9 +347,11 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
 .btn-reset:hover {
   background-color: var(--btn-clear-hover);
 }
+
 .btn-reset:active {
   background-color: var(--btn-clear-active);
 }
@@ -338,14 +369,17 @@ body {
   flex-direction: column;
   gap: 2px;
 }
+
 .btn-delete svg {
   width: 18px;
   height: 18px;
   fill: currentColor;
 }
+
 .btn-delete:hover {
   background-color: var(--btn-del-hover);
 }
+
 .btn-delete:active {
   background-color: var(--btn-del-active);
 }
@@ -355,13 +389,13 @@ body {
   body {
     padding: 10px;
   }
-  
+
   .calculator-container {
     flex-direction: column;
     min-height: auto;
     max-width: 450px;
   }
-  
+
   .history-panel {
     width: 100%;
     border-right: none;
@@ -369,7 +403,7 @@ body {
     max-height: 180px;
     padding: 16px;
   }
-  
+
   .history-list {
     flex-direction: row;
     overflow-x: auto;
@@ -378,12 +412,12 @@ body {
     gap: 8px;
     padding-bottom: 4px;
   }
-  
+
   .history-list::-webkit-scrollbar {
     height: 4px;
     width: auto;
   }
-  
+
   .history-item {
     flex-direction: column;
     justify-content: center;
@@ -391,44 +425,45 @@ body {
     padding: 6px 12px;
     flex-shrink: 0;
   }
-  
+
   .history-item:hover {
     transform: translateY(-2px);
   }
-  
+
   .calculator-main {
     width: 100%;
     padding: 16px;
     gap: 16px;
   }
-  
+
   .display-wrapper {
     min-height: 90px;
     padding: 12px 16px;
   }
-  
+
   .display-current {
     font-size: 1.8rem;
   }
-  
+
   .keyboard-grid {
     gap: 8px;
     min-height: 320px;
   }
-  
+
   .btn {
     font-size: 1.1rem;
     padding: 12px 6px;
   }
-  
+
   .btn-operator {
     font-size: 1.4rem;
   }
-  
-  .btn-calculate, .btn-reset {
+
+  .btn-calculate,
+  .btn-reset {
     font-size: 0.9rem;
   }
-  
+
   .btn-delete {
     font-size: 0.65rem;
   }
